@@ -13,6 +13,7 @@ Router.map(function () {
   this.route('mornings');
   this.route('affirmations');
   this.route('affirmation');
+  this.route('morning-affirmations');
 });
 
 export default Router;
