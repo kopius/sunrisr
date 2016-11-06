@@ -1,5 +1,8 @@
 {{#each model as |morningAffirmation|}}
-  {{morningAffirmation.completed}}
+  <!-- {{morningAffirmation.completed}} -->
+  <!-- {{morningAffirmation.affirmation.prompt}} -->
+  {{morningAffirmation.morning.completedAll}}
+  {{sunrisr-quiz affirmation=morningAffirmation.affirmation}}
 {{/each}}
 
 <!-- {{model}} -->
