@@ -1,2 +1,7 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
+
+a,
+a:visited {
+  color: inherit;
+}
