@@ -22,19 +22,9 @@ export default Ember.Route.extend({
   },
 
   afterModel(mornings) {
-    console.log('in the mornings afterModel hook, mornings arg is', mornings);
-    // debugger;
-    // mornings.forEach((morning => {
-    //   console.log(morning.get('createdAt').toDateString());
-    // }));
-
     let currentMorning = this.getCurrentMorning(mornings);
-    // let currentMorning = mornings.find(this.isCurrentMorning, this);
-    // if (!currentMorning) {
-    //   console.log('current morning does not exist yet');
-    //   // create new morning record and assign to currentMorning
-    // }
     currentMorning.set('isToday', true);
+
     console.log('currentMorning is', currentMorning);
     console.log('currentMorning.isToday is', currentMorning.get('isToday'));
   },

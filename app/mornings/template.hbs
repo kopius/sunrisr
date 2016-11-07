@@ -3,7 +3,7 @@
 {{#each model as |morning|}}
   {{#if morning.isToday}}
     <button class='btn btn-lg btn-primary'>
-      {{#link-to 'morning.morning-affirmations' morning}}Start My Day{{/link-to}}
+      {{#link-to 'morning' morning}}Start My Day{{/link-to}}
     </button>
   {{/if}}
 {{/each}}
