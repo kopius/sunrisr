@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  flashMessages: Ember.inject.service(),
+
   model () {
     console.log('you are in the morningAffirmations model hook');
     return this.get('store').findAll('morningAffirmation');
@@ -75,14 +77,20 @@ export default Ember.Route.extend({
 
   markMorningAsCompleted(morning) {
     morning.set('completedAll', true);
+
+    // FIXME: temporary workaround to allow listening for completion
+    let model = this.controller.get('model');
+    model.set('doneAffirming', true);
   },
 
   actions: {
     // find the first incomplete morningAffirmation and set it to active
-    startAffirming() {
+    startAffirming(model) {
       console.log('in startAffirming on the morning-affirmations route');
 
       let nextMA = this.activateNextMorningAffirmation();
+
+      model.set('affirmationInProgress', true);
 
       // tickle the current morning
       let currentMorning = this.getCurrentMorning(nextMA);
@@ -130,6 +138,8 @@ export default Ember.Route.extend({
       } else {
         console.log('NO MATCHY');
 
+        this.get('flashMessages')
+        .danger('That doesn\'t quite match your affirmation. Try again!');
         // do something here to display a 'no match, try again' message in the UI
 
         return false;

@@ -1,6 +1,11 @@
-<h4>Start your morning</h4>
-
+{{#unless model.affirmationInProgress}}
+<h2>Ready to start your day?</h2>
+<br />
 <button class='btn btn-lg btn-primary' {{action 'startAffirming' model on='click'}}>Start Affirming</button>
+<br />
+{{/unless}}
+
+
 
 <div>
 {{#each model as |morningAffirmation|}}
@@ -11,9 +16,31 @@
 {{/each}}
 </div>
 
-<!-- keep an eye on this canary to make sure the model is coming through -->
+<!-- how can I listen here to see if the underlying morning is complete? -->
+{{#if model.doneAffirming}}
+  <h2>Well Done</h2>
+  <h4>Have a wonderful day!</h4>
+{{/if}}
+
 <br />
+
+{{#if model.doneAffirming}}
+  <h4>Your affirmations:</h4>
+{{else}}
+  <h4>Affirmations completed so far:</h4>
+{{/if}}
+<ul>
+{{#each model as |morningAffirmation|}}
+  {{#if morningAffirmation.completed}}
+    <li>{{morningAffirmation.affirmation.prompt}} {{morningAffirmation.affirmation.response}}</li>
+  {{/if}}
+{{/each}}
+</ul>
+
+
+<!-- uncomment this canary to see if the model is coming through -->
+<!-- <br />
 <div>
   this is the model:
 {{model}}
-</div>
+</div> -->
