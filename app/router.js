@@ -11,9 +11,13 @@ Router.map(function () {
   this.route('change-password');
   this.route('users');
   this.route('mornings');
+  this.route('morning', { path: '/mornings/:morning_id' }, function() {
+    this.route('morning-affirmations', { path: '/mornings/:morning_id/morning-affirmations'});
+  });
   this.route('affirmations');
   this.route('affirmation');
-  this.route('morning-affirmations');
+
+
 });
 
 export default Router;

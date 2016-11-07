@@ -1,6 +1,15 @@
+<h1>My Mornings</h1>
+
 {{#each model as |morning|}}
-  {{morning.completedAll}}
+  {{#if morning.isToday}}
+    <button class='btn btn-lg btn-primary'>
+      {{#link-to 'morning.morning-affirmations' morning}}Start My Day{{/link-to}}
+    </button>
+  {{/if}}
 {{/each}}
 
+<button class='btn btn-lg btn-primary'>
+  View History
+</button>
 
 {{outlet}}
