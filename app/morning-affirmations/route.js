@@ -73,10 +73,14 @@ export default Ember.Route.extend({
 
   markMorningAffirmationAsCompleted(morningAffirmation) {
     morningAffirmation.set('completed', true);
+    console.log('in markMorningAsCompleted, trying to save this morningAffirmation', morningAffirmation);
+    morningAffirmation.save();
   },
 
   markMorningAsCompleted(morning) {
     morning.set('completedAll', true);
+    console.log('in markMorningAsCompleted, trying to save this morning', morning);
+    morning.save();
 
     // FIXME: temporary workaround to allow listening for completion
     let model = this.controller.get('model');

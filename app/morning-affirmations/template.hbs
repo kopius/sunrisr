@@ -1,11 +1,10 @@
+
 {{#unless model.affirmationInProgress}}
 <h2>Ready to start your day?</h2>
 <br />
 <button class='btn btn-lg btn-primary' {{action 'startAffirming' model on='click'}}>Start Affirming</button>
 <br />
 {{/unless}}
-
-
 
 <div>
 {{#each model as |morningAffirmation|}}
@@ -36,7 +35,6 @@
   {{/if}}
 {{/each}}
 </ul>
-
 
 <!-- uncomment this canary to see if the model is coming through -->
 <!-- <br />
