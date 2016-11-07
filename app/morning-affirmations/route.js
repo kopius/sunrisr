@@ -4,11 +4,13 @@ export default Ember.Route.extend({
   model () {
     console.log('you are in the morningAffirmations model hook');
     return this.get('store').findAll('morningAffirmation');
-    // console.log('model is:', model);
-    // return model;
   },
 
   // this method does not currently work
+  // something like this may be needed elsewhere in the app
+  // to see if a new morning needs to be created
+  // maybe do this at login? also a good opportunity to tickle
+  // the current morning
   getCurrentMorning() {
     console.log('in getCurrentMorning. this is:', this);
     // get all mornings
@@ -38,7 +40,7 @@ export default Ember.Route.extend({
   activateNextMorningAffirmation() {
     console.log('in activateNextMorningAffirmation');
     let model = this.controller.get('model');
-    // TODO: this code is repeated in a couple of places - factor it out at some point
+    // TODO: this code is repeated in a couple of places - come back and factor it out
     let nextMA = model.find((morningAffirmation) => {
       return morningAffirmation.get('completed') === false;
     });
@@ -68,17 +70,12 @@ export default Ember.Route.extend({
       console.log('nextMA.isActive is', nextMA.get('isActive'));
     },
 
+    // TODO: break this method out into several helper methods
     checkMatch(response, morningAffirmation) {
       console.log('in checkMatch on the morning-affirmations route');
       console.log('response is', response);
       let affirmation = morningAffirmation.get('affirmation');
       console.log('affirmation is', affirmation);
-
-      // Shouldn't need this code anymore - now passing the whole MA in:
-      // get the active MA
-      // let activeMA = this.get('store').query('morningAffirmation', { isActive: true });
-      // let activeMA = this.get('store').query('morningAffirmation', 1);
-      // console.log('activeMA is', activeMA);
 
       // check to see if response matches
       if (affirmation.get('response') === response) {
@@ -88,11 +85,11 @@ export default Ember.Route.extend({
         morningAffirmation.set('completed', true);
         morningAffirmation.set('isActive', false);
 
-
-        // check to see if all MA's are completed
-        let currentMorning = morningAffirmation.get('morning'); /*FIXME*/
+        // get the current morning
+        let currentMorning = morningAffirmation.get('morning');
         console.log('back in checkMatch, currentMorning is:', currentMorning);
 
+        // check to see if all MA's are completed
         if (!this.activateNextMorningAffirmation()) {
           currentMorning.set('completedAll', true);
           console.log('back in checkMatch, all morning affirmations complete');
@@ -102,13 +99,6 @@ export default Ember.Route.extend({
         console.log('NO MATCHY');
         return false;
       }
-
-
-
-
-      //        - if yes, get the current Morning and set its `completed_all` = true
-      //        - if no, get the next MA and set its `isActive` to true
-
     }
   }
 
