@@ -1,3 +1,13 @@
 <h4>i'm a sunrisr-quiz!</h4>
 
-<h4>{{affirmation.prompt}}</h4>
+<h4>{{morningAffirmation.affirmation.prompt}}...</h4>
+
+<form {{action 'checkMatch' morningAffirmation on='submit'}}>
+  {{input placeholder=''
+          class='input-group form-control'
+          value=form.response
+          autocomplete='off'}}
+  {{input type="submit"
+          class='btn btn-lg btn-primary'
+          value="Affirm"}}
+</form>

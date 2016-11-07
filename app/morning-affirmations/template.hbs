@@ -10,10 +10,12 @@ for the current mornings, and have a big button that starts the affirmation proc
 <div>
 {{#each model as |morningAffirmation|}}
   {{#if morningAffirmation.isActive}}
-    {{sunrisr-quiz affirmation=morningAffirmation.affirmation}}
+    {{sunrisr-quiz morningAffirmation=morningAffirmation
+                   checkMatch='checkMatch'}}
   {{/if}}
 {{/each}}
 </div>
+
 
 <!-- keep an eye on this canary to make sure the model is coming through -->
 <br />
