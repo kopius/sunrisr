@@ -11,7 +11,7 @@ export default Ember.Route.extend({
   // to see if a new morning needs to be created
   // maybe do this at login? also a good opportunity to tickle
   // the current morning
-  getCurrentMorning() {
+  checkForMorning() {
     console.log('in getCurrentMorning. this is:', this);
     // get all mornings
     let mornings = this.get('store').findAll('morning');
@@ -40,63 +40,98 @@ export default Ember.Route.extend({
   activateNextMorningAffirmation() {
     console.log('in activateNextMorningAffirmation');
     let model = this.controller.get('model');
-    // TODO: this code is repeated in a couple of places - come back and factor it out
+    // find the first morningAffirmation that is still incomplete
     let nextMA = model.find((morningAffirmation) => {
       return morningAffirmation.get('completed') === false;
     });
+
+    // if an incomplete morningAffirmation was found, activate & return it
     if (nextMA) {
       nextMA.set('isActive', true);
       console.log('nextMA is', nextMA);
-      return true;
+      return nextMA;
     } else {
+      // if no incomplete MA's, return false
       console.log('there is no nextMA');
       return false;
     }
   },
 
+  deactivateMorningAffirmation(morningAffirmation) {
+    morningAffirmation.set('isActive', false);
+  },
+
+  getCurrentAffirmation(morningAffirmation) {
+    return morningAffirmation.get('affirmation');
+  },
+
+  getCurrentMorning(morningAffirmation) {
+    return morningAffirmation.get('morning');
+  },
+
+  markMorningAffirmationAsCompleted(morningAffirmation) {
+    morningAffirmation.set('completed', true);
+  },
+
+  markMorningAsCompleted(morning) {
+    morning.set('completedAll', true);
+  },
+
   actions: {
     // find the first incomplete morningAffirmation and set it to active
-    startAffirming(model) {
+    startAffirming() {
       console.log('in startAffirming on the morning-affirmations route');
-      let nextMA = model.find((morningAffirmation) => {
-        return morningAffirmation.get('completed') === false;
-      });
-      nextMA.set('isActive', true);
+
+      let nextMA = this.activateNextMorningAffirmation();
 
       // tickle the current morning
-      let currentMorning = nextMA.get('morning');
-      console.log('ticking the current morning:', currentMorning);
+      let currentMorning = this.getCurrentMorning(nextMA);
 
+      console.log('tickling the current morning:', currentMorning);
       console.log('nextMA.isActive is', nextMA.get('isActive'));
     },
 
-    // TODO: break this method out into several helper methods
-    checkMatch(response, morningAffirmation) {
+    checkMatch(response, currentMA) {
+
       console.log('in checkMatch on the morning-affirmations route');
       console.log('response is', response);
-      let affirmation = morningAffirmation.get('affirmation');
+
+      // get the affirmation referenced by the current morningAffirmation
+      let affirmation = this.getCurrentAffirmation(currentMA);
+
       console.log('affirmation is', affirmation);
 
       // check to see if response matches
       if (affirmation.get('response') === response) {
         // if so:
         console.log('response is a match! yaaaaaay!');
-        // find the active MA and set its `completed` to true and `isActive` to false
-        morningAffirmation.set('completed', true);
-        morningAffirmation.set('isActive', false);
+
+        // if so, find the active MA and set its `completed` to true...
+
+        this.markMorningAffirmationAsCompleted(currentMA);
+        // ...and set its `isActive` to false
+        this.deactivateMorningAffirmation(currentMA);
 
         // get the current morning
-        let currentMorning = morningAffirmation.get('morning');
+        let currentMorning = this.getCurrentMorning(currentMA);
+
         console.log('back in checkMatch, currentMorning is:', currentMorning);
 
         // check to see if all MA's are completed
         if (!this.activateNextMorningAffirmation()) {
-          currentMorning.set('completedAll', true);
+          this.markMorningAsCompleted(currentMorning);
+
+          // either activate an all-complete message, or have one already
+          // listening for morning.completeAll = true
+
           console.log('back in checkMatch, all morning affirmations complete');
         }
         return true;
       } else {
         console.log('NO MATCHY');
+
+        // do something here to display a 'no match, try again' message in the UI
+
         return false;
       }
     }
