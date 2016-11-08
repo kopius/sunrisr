@@ -1,4 +1,4 @@
-import ENV from 'morning-affirmation-client/config/environment';
+import ENV from 'sunrisr/config/environment';
 import ActiveModelAdapter from 'active-model-adapter';
 
 import Ember from 'ember';

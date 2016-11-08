@@ -3,7 +3,7 @@
 module.exports = function (environment) {
   'use strict';
   const ENV = {
-    modulePrefix: 'morning-affirmation-client',
+    modulePrefix: 'sunrisr',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
@@ -49,7 +49,7 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    ENV.rootURL = '/morning-affirmation-client';
+    ENV.rootURL = '/sunrisr';
     ENV.locationType = 'hash';
     ENV.apiHost = 'https://morning-affirmation-api.herokuapp.com';
   }

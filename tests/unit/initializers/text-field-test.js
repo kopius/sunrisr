@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import TextFieldInitializer from 'morning-affirmation-client/initializers/text-field';
+import TextFieldInitializer from 'sunrisr/initializers/text-field';
 import { module, test } from 'qunit';
 
 let application;

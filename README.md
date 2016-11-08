@@ -1,4 +1,4 @@
-# Morning Affirmation
+# Sunrisr
 
 There are a ton of websites out there that offer lists of positive, uplifting affirmation statements that you can browse through for inspiration.
 
@@ -10,4 +10,4 @@ _They don't make you **do** *anything._
 
 An inspiring message, flashed across the screen, might give you the momentary boost you need. But humans aren't very good at retaining things by just reading them. If you want a message to really sink in, you need to interact with it in some way.
 
-This is why I built MorningAffirmation: the only app that lets you write a personalized list of daily affirmations, then prompts you to *write them out every morning.*
+This is why I built Sunrisr: the only app that lets you write a personalized list of daily affirmations, then prompts you to *write them out every morning.*
