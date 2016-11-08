@@ -51,7 +51,7 @@ module.exports = function (environment) {
   if (environment === 'production') {
     ENV.rootURL = '/sunrisr';
     ENV.locationType = 'hash';
-    ENV.apiHost = 'https://morning-affirmation-api.herokuapp.com';
+    ENV.apiHost = 'https://sunrisr-api.herokuapp.com';
   }
 
   return ENV;
