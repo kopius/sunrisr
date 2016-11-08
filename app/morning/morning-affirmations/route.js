@@ -12,6 +12,7 @@ export default Ember.Route.extend({
     return this.get('store').query('morningAffirmation', { morning_id: id });
   },
 
+  /* Looks for the first incomplete morningAffirmation and sets it to active */
   activateNextMorningAffirmation() {
     console.log('in activateNextMorningAffirmation');
     let model = this.controller.get('model');
@@ -32,30 +33,37 @@ export default Ember.Route.extend({
     }
   },
 
+  /* Sets the isActive flag to false on a morningAffirmation  */
   deactivateMorningAffirmation(morningAffirmation) {
     morningAffirmation.set('isActive', false);
   },
 
+  /* Gets and returns the affirmation to which a morningAffirmation belongs  */
   getCurrentAffirmation(morningAffirmation) {
     return morningAffirmation.get('affirmation');
   },
 
+  /* Gets and returns the morning to which a morningAffirmation belongs  */
   getCurrentMorning(morningAffirmation) {
     return morningAffirmation.get('morning');
   },
 
+  /* Sets the completed flag to false on a morningAffirmation
+  and persists this change to the server */
   markMorningAffirmationAsCompleted(morningAffirmation) {
     morningAffirmation.set('completed', true);
-    console.log('in markMorningAsCompleted, trying to save this morningAffirmation', morningAffirmation);
+    console.log('in markMorningAffirmationAsCompleted, trying to save this morningAffirmation', morningAffirmation);
     morningAffirmation.save();
   },
 
+  /* Sets the completedAll flag to false on a morning. Does not need to persist,
+  because this is a virtual property on the API */
   markMorningAsCompleted(morning) {
     morning.set('completedAll', true);
   },
 
   actions: {
-    // find the first incomplete morningAffirmation and set it to active
+    /* Finds the first incomplete morningAffirmation and sets it to active */
     startAffirming(model) {
       console.log('in startAffirming on the morning-affirmations route');
 
@@ -70,8 +78,8 @@ export default Ember.Route.extend({
       console.log('nextMA.isActive is', nextMA.get('isActive'));
     },
 
+    /* Checks to see if the submitted response matches the target response */
     checkMatch(response, currentMA) {
-
       console.log('in checkMatch on the morning-affirmations route');
       console.log('response is', response);
 
@@ -82,34 +90,25 @@ export default Ember.Route.extend({
 
       // check to see if response matches
       if (affirmation.get('response') === response) {
-        // if so:
         console.log('response is a match! yaaaaaay!');
 
         // if so, find the active MA and set its `completed` to true...
-
         this.markMorningAffirmationAsCompleted(currentMA);
         // ...and set its `isActive` to false
         this.deactivateMorningAffirmation(currentMA);
 
-        // get the current morning
-        let currentMorning = this.getCurrentMorning(currentMA);
-
-        console.log('back in checkMatch, currentMorning is:', currentMorning);
-
         // check to see if all MA's are completed
         if (!this.activateNextMorningAffirmation()) {
           // if all MA's completed, mark morning as completed
+          let currentMorning = this.getCurrentMorning(currentMA);
           this.markMorningAsCompleted(currentMorning);
-
-          // either activate an all-complete message, or have one already
-          // listening for morning.completeAll = true
 
           console.log('back in checkMatch, all morning affirmations complete');
         }
         return true;
       } else {
         console.log('NO MATCHY');
-        
+
         this.get('flashMessages')
         .danger('That doesn\'t quite match your affirmation. Try again!');
         return false;

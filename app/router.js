@@ -16,8 +16,6 @@ Router.map(function () {
   });
   this.route('affirmations');
   this.route('affirmation');
-
-
 });
 
 export default Router;

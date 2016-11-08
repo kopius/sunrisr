@@ -3,7 +3,9 @@
 {{#unless model.affirmationInProgress}}
 <h2>Ready to start your day?</h2>
 <br />
-<button class='btn btn-lg btn-primary' {{action 'startAffirming' model on='click'}}>Start Affirming</button>
+<button class='btn btn-lg btn-primary' {{action 'startAffirming' model on='click'}}>
+  Start Affirming
+</button>
 <br />
 {{/unless}}
 
@@ -23,6 +25,8 @@
 
 <br />
 
+<!-- This header changes depending on whether
+all morning affirmations have been completed -->
 {{#if model.firstObject.morning.completedAll}}
   <h4>Your affirmations:</h4>
 {{else}}
@@ -30,17 +34,14 @@
     <h4>Affirmations completed so far:</h4>
   {{/if}}
 {{/if}}
+
 <ul>
 {{#each model as |morningAffirmation|}}
   {{#if morningAffirmation.completed}}
-    <li>{{morningAffirmation.affirmation.prompt}} {{morningAffirmation.affirmation.response}}</li>
+    <li>
+      {{morningAffirmation.affirmation.prompt}}
+      {{morningAffirmation.affirmation.response}}
+    </li>
   {{/if}}
 {{/each}}
 </ul>
-
-<!-- uncomment this canary to see if the model is coming through -->
-<!-- <br />
-<div>
-  this is the model.firstObject.morning.completedAll:
-{{model.firstObject.morning.completedAll}}
-</div> -->
