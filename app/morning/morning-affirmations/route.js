@@ -52,8 +52,6 @@ export default Ember.Route.extend({
 
   markMorningAsCompleted(morning) {
     morning.set('completedAll', true);
-    console.log('in markMorningAsCompleted, trying to save this morning', morning);
-    morning.save();
 
     // FIXME: temporary workaround to allow listening for completion
     let model = this.controller.get('model');
@@ -104,6 +102,7 @@ export default Ember.Route.extend({
 
         // check to see if all MA's are completed
         if (!this.activateNextMorningAffirmation()) {
+          // if all MA's completed, mark morning as completed
           this.markMorningAsCompleted(currentMorning);
 
           // either activate an all-complete message, or have one already
