@@ -5,7 +5,11 @@ export default Ember.Route.extend({
 
   model () {
     console.log('you are in the morningAffirmations model hook');
-    return this.get('store').findAll('morningAffirmation');
+    let currentMorning = this.modelFor('morning');
+    console.log('currentMorning is', currentMorning);
+    let id = currentMorning.get('id');
+
+    return this.get('store').query('morningAffirmation', { morning_id: id });
   },
 
   activateNextMorningAffirmation() {

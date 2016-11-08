@@ -7,6 +7,7 @@ export default Ember.Route.extend({
   },
 
   afterModel(morning) {
+    console.log('in morning afterModel hook, morning is', morning);
     if (morning.isToday) {
       this.transitionTo('morning.morning-affirmations');
     }
