@@ -52,10 +52,6 @@ export default Ember.Route.extend({
 
   markMorningAsCompleted(morning) {
     morning.set('completedAll', true);
-
-    // FIXME: temporary workaround to allow listening for completion
-    let model = this.controller.get('model');
-    model.set('doneAffirming', true);
   },
 
   actions: {
@@ -113,11 +109,9 @@ export default Ember.Route.extend({
         return true;
       } else {
         console.log('NO MATCHY');
-
+        
         this.get('flashMessages')
         .danger('That doesn\'t quite match your affirmation. Try again!');
-        // do something here to display a 'no match, try again' message in the UI
-
         return false;
       }
     }

@@ -1,3 +1,5 @@
+
+
 {{#unless model.affirmationInProgress}}
 <h2>Ready to start your day?</h2>
 <br />
@@ -14,18 +16,19 @@
 {{/each}}
 </div>
 
-<!-- how can I listen here to see if the underlying morning is complete? -->
-{{#if model.doneAffirming}}
+{{#if model.firstObject.morning.completedAll}}
   <h2>Well Done</h2>
   <h4>Have a wonderful day!</h4>
 {{/if}}
 
 <br />
 
-{{#if model.doneAffirming}}
+{{#if model.firstObject.morning.completedAll}}
   <h4>Your affirmations:</h4>
 {{else}}
-  <h4>Affirmations completed so far:</h4>
+  {{#if model.affirmationInProgress}}
+    <h4>Affirmations completed so far:</h4>
+  {{/if}}
 {{/if}}
 <ul>
 {{#each model as |morningAffirmation|}}
@@ -38,6 +41,6 @@
 <!-- uncomment this canary to see if the model is coming through -->
 <!-- <br />
 <div>
-  this is the model:
-{{model}}
+  this is the model.firstObject.morning.completedAll:
+{{model.firstObject.morning.completedAll}}
 </div> -->
