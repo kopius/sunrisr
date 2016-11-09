@@ -3,9 +3,15 @@
 
 <ul>
   {{#each model as |affirmation|}}
-    {{sunrisr-affirmation affirmation=affirmation
-                          edit='editAffirmation'
-                          delete='deleteAffirmation'}}
+    {{#if affirmation.isEditing}}
+      {{sunrisr-affirmation-form affirmation=affirmation
+                                 save='saveAffirmationEdits'
+                                 cancel='cancelAffirmationEdits'}}
+    {{else}}
+      {{sunrisr-affirmation affirmation=affirmation
+                            edit='editAffirmation'
+                            delete='deleteAffirmation'}}
+    {{/if}}
   {{/each}}
 </ul>
 <br />

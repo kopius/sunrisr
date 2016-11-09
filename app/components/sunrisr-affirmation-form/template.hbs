@@ -1,1 +1,14 @@
-{{yield}}
+<form class='row' {{action 'Save' model on='submit'}}>
+  <div class='col-xs-4'>
+    {{input value=affirmation.prompt
+            class='input-group form-control'}}
+
+  </div>
+  <div class='col-xs-6'>
+    {{input value=affirmation.response
+            class='input-group form-control'}}
+  </div>
+    <button type='submit' class='btn btn-sm btn-primary'>Save</button>
+    <button type='reset' class='btn btn-sm btn-warning'>Cancel</button>
+</form>
+<hr>
