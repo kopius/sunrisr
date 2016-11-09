@@ -15,7 +15,8 @@
   {{/each}}
 </ul>
 <br />
-
+<br />
+<!--
 <h5>Add a new affirmation:</h5>
 <form {{action 'createAffirmation' on='submit'}}>
   {{input placeholder='Prompt (we will show you this part)'
@@ -27,4 +28,23 @@
   {{input type="submit"
           class='btn btn-lg btn-primary'
           value="Add Affirmation"}}
+</form> -->
+
+<h4>Add a new affirmation:</h4>
+<form class='row' {{action 'createAffirmation' on='submit'}}>
+  <div class='col-xs-12 col-sm-4'>
+    {{input placeholder='Prompt (e.g. "Today I will")'
+            class='input-group form-control'
+            value=affirmation.prompt}}
+  </div>
+  <div class='col-xs-12 col-sm-8'>
+    {{input placeholder='Response (e.g. "reach for the stars")'
+            class='input-group form-control'
+            value=affirmation.response}}
+  </div>
+  <div class='col-xs-12'>
+    <button type='submit' class='btn btn-sm btn-primary'>Add Affirmation</button>
+    <button type='reset' class='btn btn-sm btn-warning'>Cancel</button>
+  </div>
+
 </form>
