@@ -8,6 +8,7 @@ export default Ember.Route.extend({
 
   afterModel(morning) {
     console.log('in morning afterModel hook, morning is', morning);
+    
 
     this.transitionTo('morning.morning-affirmations');
   }
