@@ -1,10 +1,10 @@
-<!-- <h2>My Affirmations</h2>
+<h2>My Affirmations</h2>
 <hr>
 
 
 
 <ul>
-  {{#each model as |affirmation|}}
+  {{#each affirmations as |affirmation|}}
     {{#if affirmation.isEditing}}
       {{sunrisr-affirmation-form-edit affirmation=affirmation
                                       save='saveAffirmationEdits'
@@ -19,11 +19,4 @@
 <br />
 <br />
 
-{{sunrisr-affirmation-form-create  create='createAffirmation'}} -->
-
-{{my-affirmations affirmations=model
-                  saveAffirmationEdits='saveAffirmationEdits'
-                  cancelAffirmationEdits='cancelAffirmationEdits'
-                  editAffirmation='editAffirmation'
-                  deleteAffirmation='deleteAffirmation'
-                  createAffirmation='createAffirmation'}}
+{{sunrisr-affirmation-form-create  create='createAffirmation'}}

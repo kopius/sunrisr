@@ -10,9 +10,6 @@ export default Ember.Route.extend({
     response: null,
   },
 
-  // prompt: null,
-  // response: null,
-
   actions: {
     /* Create a new Affirmation record with parameters from form data, persist
        the new record to the server, and reset the form fields */
@@ -50,6 +47,7 @@ export default Ember.Route.extend({
 
     /* Close the editing form without saving changes */
     cancelAffirmationEdits(affirmation) {
+      affirmation.rollbackAttributes();
       affirmation.set('isEditing', false);
     }
   }
