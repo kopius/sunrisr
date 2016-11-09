@@ -10,10 +10,13 @@ export default Ember.Route.extend({
     response: null,
   },
 
+  // prompt: null,
+  // response: null,
+
   actions: {
     /* TODO: Finish and test this action. Ensure the new record persists. */
-    createAffirmation() {
-      let newAffirmation = this.get('form');
+    createAffirmation(newAffirmation) {
+      console.log('in createAffirmation, newAffirmation is', newAffirmation);
       let affirmation = this.get('store').createRecord('affirmation',
                                                        newAffirmation);
       affirmation.save();

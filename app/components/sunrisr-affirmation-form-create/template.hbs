@@ -1,0 +1,20 @@
+<h4>Add a new affirmation:</h4>
+<form class='row' {{action 'create' on='submit'}}>
+  <div class='col-xs-12 col-sm-4'>
+    {{input placeholder='Prompt (e.g. "Today I will")'
+            class='input-group form-control'
+            value=form.prompt}}
+  </div>
+  <div class='col-xs-12 col-sm-8'>
+    {{input placeholder='Response (e.g. "reach for the stars")'
+            class='input-group form-control'
+            value=form.response}}
+  </div>
+  <div class='col-xs-12'>
+    <button type='submit' class='btn btn-sm btn-primary'>Add Affirmation</button>
+    <button type='reset' class='btn btn-sm btn-warning'>Cancel</button>
+  </div>
+</form>
+
+{{form.prompt}}
+{{form.response}}
