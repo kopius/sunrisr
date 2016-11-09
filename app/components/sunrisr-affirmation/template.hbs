@@ -1,0 +1,15 @@
+<div class='row'>
+  <div class='col-xs-8'>
+    <span class="affirmation-text" align-items='center'>
+      {{affirmation.prompt}}
+      {{affirmation.response}}
+    </span>
+  </div>
+  <div class='col-xs-2'>
+    <button class='btn btn-sm btn-info' {{action 'delete'}}>EDIT</button>
+  </div>
+  <div class='col-xs-2'>
+    <button class='btn btn-sm btn-danger' {{action 'delete'}}>DELETE</button>
+  </div>
+</div>
+<hr>

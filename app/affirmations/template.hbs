@@ -1,7 +1,24 @@
-{{#each model as |affirmation|}}
-<div>
-  {{affirmation.prompt}}
-  {{affirmation.response}}
-</div>
-{{/each}}
-{{outlet}}
+<h2>My Affirmations</h2>
+<hr>
+
+<ul>
+  {{#each model as |affirmation|}}
+    {{sunrisr-affirmation affirmation=affirmation
+                          edit='editAffirmation'
+                          delete='deleteAffirmation'}}
+  {{/each}}
+</ul>
+<br />
+
+<h5>Add a new affirmation:</h5>
+<form {{action 'createAffirmation' on='submit'}}>
+  {{input placeholder='Prompt (we will show you this part)'
+          class='input-group form-control'
+          value=affirmation.prompt}}
+  {{input placeholder='Response (you will type this part)'
+          class='input-group form-control'
+          value=affirmation.response}}
+  {{input type="submit"
+          class='btn btn-lg btn-primary'
+          value="Add Affirmation"}}
+</form>
