@@ -1,7 +1,9 @@
 <h2>My Affirmations</h2>
 <hr>
 
-
+{{#unless hasAffirmations}}
+<h3>Use the form below to create your first affirmation!</h3>
+{{/unless}}
 
 <ul>
   {{#each affirmations as |affirmation|}}

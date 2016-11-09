@@ -5,10 +5,10 @@ export default Ember.Route.extend({
     return this.get('store').findAll('affirmation');
   },
 
-  form: {
-    prompt: null,
-    response: null,
-  },
+  // form: {
+  //   prompt: null,
+  //   response: null,
+  // },
 
   actions: {
     /* Create a new Affirmation record with parameters from form data, persist
@@ -18,9 +18,9 @@ export default Ember.Route.extend({
       let affirmation = this.get('store').createRecord('affirmation',
                                                        newAffirmation);
       affirmation.save();
-
-      this.set('form.prompt', null);
-      this.set('form.response', null);
+      //
+      // this.set('form.prompt', null);
+      // this.set('form.response', null);
     },
 
     /* Open the editing form for an Affirmation record */

@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+  hasAffirmations: Ember.computed.bool('affirmations.length'),
+
   actions: {
     /* Sends form data to parent route to create a new Affirmation record */
     createAffirmation(newAffirmation) {
@@ -18,10 +20,12 @@ export default Ember.Component.extend({
       this.sendAction('cancelAffirmationEdits', editedAffirmation);
     },
 
+    /* Opens edit mode for the selected Affirmation record */
     editAffirmation(affirmation) {
       this.sendAction('editAffirmation', affirmation);
     },
 
+    /* Deletes the selected Affirmation record */
     deleteAffirmation(affirmation) {
       this.sendAction('deleteAffirmation', affirmation);
     },
