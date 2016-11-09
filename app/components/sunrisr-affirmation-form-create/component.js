@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    /* TODO: Finish and test this action. Ensure the new record persists. */
+    /* Sends form data to parent route to create a new Affirmation record */
     create() {
       let newAffirmation = this.get('form');
 
