@@ -1,0 +1,16 @@
+<h1>My Mornings</h1>
+
+{{#if hasAffirmations}}
+  <button class='btn btn-lg btn-primary' {{action 'startMyDay' mornings on='click'}} >
+  Start My Day
+  </button>
+{{else}}
+  <h3>It looks like you don't have any affirmations yet.</h3>
+  <h3>Would you like to write one?</h3>
+  {{#link-to 'affirmations' class='btn btn-lg btn-primary'}}Yes Please!{{/link-to}}
+{{/if}}
+
+<!-- Leave this commented out until the view-history feature is built -->
+<!-- <button class='btn btn-lg btn-primary'>
+  View History
+</button> -->

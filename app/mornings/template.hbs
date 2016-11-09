@@ -1,12 +1,3 @@
-<h1>My Mornings</h1>
-
-<button class='btn btn-lg btn-primary' {{action 'startMyDay' model on='click'}} >
-Start My Day
-</button>
-
-<!-- Leave this commented out until the view-history feature is built -->
-<!-- <button class='btn btn-lg btn-primary'>
-  View History
-</button> -->
-
-{{outlet}}
+{{my-mornings mornings=mornings
+              affirmations=affirmations
+              startMyDay='startMyDay'}}

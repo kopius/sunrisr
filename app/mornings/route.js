@@ -3,7 +3,18 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   model () {
     console.log('in the mornings model hook');
-    return this.get('store').findAll('morning');
+    // return this.get('store').findAll('morning');
+
+    let store = this.get('store');
+
+    return Ember.RSVP.hash({
+      mornings: store.findAll('morning'),
+      affirmations: store.findAll('affirmation')
+    });
+  },
+
+  setupController(controller, models) {
+    controller.setProperties(models);
   },
 
   actions: {
