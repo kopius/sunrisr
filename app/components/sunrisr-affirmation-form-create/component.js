@@ -16,5 +16,10 @@ export default Ember.Component.extend({
       this.set('form.prompt', null);
       this.set('form.response', null);
     },
+
+    reset() {
+      this.set('form.prompt', null);
+      this.set('form.response', null);
+    }
   }
 });
