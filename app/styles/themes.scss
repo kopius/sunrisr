@@ -1,0 +1,81 @@
+body {
+  background: $body-background;
+  color: $body-text;
+  font-family: $body-font;
+}
+
+a:visited {
+  color: $white;
+}
+
+.btn-primary {
+  background-image: linear-gradient(to bottom, $storm-blue 20%, $midnight-blue 100%);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to bottom, $winter-sky 20%, $storm-blue 100%);
+}
+
+.btn-danger {
+  background-image: linear-gradient(to bottom, $cardinal 20%, $cranberry 100%);
+}
+
+.btn-danger:hover {
+  background: linear-gradient(to bottom, $racecar 20%, $cardinal 100%);
+}
+
+.btn-affirm.form-control {
+  max-width: 100px;
+  padding: 6px 12px;
+}
+
+.navbar {
+  background-image: linear-gradient(to bottom, $butter 0%, $sun-yellow 50%);
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $navbar-text;
+  font-size: 1.2em;
+}
+
+.navbar-default .navbar-brand {
+  color: $navbar-text;
+  font-family: $brand-font;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.sunrisr-brand {
+  font-family: $brand-font;
+  font-size: 4em;
+  font-weight: 600;
+}
+
+.subheading {
+  margin-top: 0;
+}
+
+.affirmation-text {
+  font-size: 1.5em;
+}
+
+.form-control {
+  max-width: 350px;
+}
+
+.form-control.sunrisr-response {
+  display: inline-block;
+  max-width: 500px;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.top-margin {
+  margin-top: 5px;
+}

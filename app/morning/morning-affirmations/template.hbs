@@ -1,25 +1,23 @@
+<div class='center-text'>
 {{#if model.firstObject.morning.completedAll}}
 
-  <h2>Well Done</h2>
-  <h4>You've completed your morning affirmations.</h4>
-  <h4>See you again tomorrow!</h4>
+  <h1>Well Done</h1>
+  <h3>You've completed your morning affirmations.</h3>
+  <h3>See you again tomorrow!</h3>
   <hr>
-  <h4>Your affirmations:</h4>
-  <ul>
+  <h3 class='italic'>Your affirmations:</h3>
   {{#each model as |morningAffirmation|}}
     {{#if morningAffirmation.completed}}
-      <li>
-        {{morningAffirmation.affirmation.prompt}}
-        {{morningAffirmation.affirmation.response}}
-      </li>
+      <h4>
+        {{morningAffirmation.affirmation.prompt}} {{morningAffirmation.affirmation.response}}
+      </h4>
     {{/if}}
   {{/each}}
-  </ul>
 
 {{else}}
 
   {{#unless model.affirmationInProgress}}
-  <h2>Good morning!</h2>
+  <h1>Good morning!</h1>
   <br />
   <button class='btn btn-lg btn-primary' {{action 'startAffirming' model on='click'}}>
     Start Affirming
@@ -27,6 +25,7 @@
   <br />
   {{/unless}}
 
+  {{#if model.affirmationInProgress}}
   <div>
   {{#each model as |morningAffirmation|}}
     {{#if morningAffirmation.isActive}}
@@ -39,7 +38,7 @@
   <br />
 
   {{#if model.affirmationInProgress}}
-    <h4>Affirmations completed so far:</h4>
+    <h3 class='italic'>Affirmations completed so far:</h3>
   {{/if}}
 
   <ul>
@@ -52,5 +51,7 @@
     {{/if}}
   {{/each}}
   </ul>
+  {{/if}}
 
 {{/if}}
+</div>

@@ -1,11 +1,6 @@
 @import 'bootstrap';
 @import 'bootstrap/theme';
 
-a,
-a:visited {
-  color: inherit;
-}
-
-.affirmation-text {
-  font-size: 1.5em;
-}
+@import 'colors';
+@import 'typography';
+@import 'themes';

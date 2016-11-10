@@ -1,13 +1,22 @@
-<h1>Sunrisr</h1>
-
-<h3>What do you want to tell yourself every day?</h3>
-
-<button class='btn btn-lg btn-primary'>
-  {{#link-to 'affirmations'}}My Affirmations{{/link-to}}
-</button>
-
-<button class='btn btn-lg btn-primary'>
-  {{#link-to 'mornings'}}My Mornings{{/link-to}}
-</button>
+<div class='container center-text'>
+  <h1 class='sunrisr-brand'>Sunrisr</h1>
+  <h3 class='italic subheading'>What do you want to tell yourself every day?</h3>
+  <br />
+  <br />
+  <div>
+    <h4>Create a list of custom affirmations:</h4>
+    <button class='btn btn-lg btn-primary'>
+      {{#link-to 'affirmations'}}My Affirmations{{/link-to}}
+    </button>
+  </div>
+  <br />
+  <br />
+  <div>
+    <h4>Perform your morning ritual:</h4>
+    <button class='btn btn-lg btn-primary'>
+      {{#link-to 'mornings'}}My Mornings{{/link-to}}
+    </button>
+  </div>
+</div>
 
 {{outlet}}

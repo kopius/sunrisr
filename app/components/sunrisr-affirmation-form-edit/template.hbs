@@ -1,15 +1,15 @@
 <form class='row' {{action 'save' affirmation on='submit'}}>
   <div class='col-xs-12 col-sm-4'>
-    {{input class='input-group form-control'
+    {{input class='input-group form-control sunrisr-prompt'
             value=affirmation.prompt}}
   </div>
   <div class='col-xs-12 col-sm-8'>
     {{input value=affirmation.response
-            class='input-group form-control'}}
+            class='input-group form-control sunrisr-response'}}
   </div>
   <div class='col-xs-12'>
     <button type='submit' class='btn btn-sm btn-primary'>Save</button>
-    <button class='btn btn-sm btn-warning' {{action 'cancel' affirmation on='click'}}>Cancel</button>
+    <button class='btn btn-sm btn-danger' {{action 'cancel' affirmation on='click'}}>Cancel</button>
   </div>
 </form>
 <hr />
