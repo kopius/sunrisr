@@ -4,9 +4,9 @@ Many websites offer long lists of positive, uplifting affirmation statements.
 
 There are even a few apps that, via scheduled notifications, will regularly remind you of your favorite affirmations.
 
-I love browsing through sites like these. They fill me with inspiration. But when I went looking for one particular feature, one that's critical for anyone seeking self-improvement, I found that every site lacked it.
+I love browsing through sites like these. They fill me with inspiration. But when I went looking for a particular feature, one that's critical for anyone seeking self-improvement, I found that every site lacked it.
 
-There's no interaction. None of affirmation sites I've come across make you _do_ anything.
+There's no interaction. None of the affirmation sites I've come across make you _do_ anything.
 
 An inspiring message, flashed across the screen, can give you the momentary boost you need. But people aren't very good at retaining things by just reading them. If you want a message to really sink in, you need to engage with it in some way.
 
@@ -36,7 +36,7 @@ In future versions of Sunrisr, I plan to focus on two additional features:
 
 #### Tutorial / Improved UX
 
-Sunrisr currently has a very simple UI, and only offers basic guidance to shepherd new users through the interface. In future versions, I'd like to improve the overall user experience by offering features like a tutorial, clearer calls to action, and a library of existing morning affirmations to browse for ideas.
+Sunrisr currently has a very simple UI, and only offers basic guidance to shepherd new users through the interface. In future versions, I'd like to improve the overall user experience by offering a tutorial, clearer calls to action, and a library of existing morning affirmations to browse for ideas.
 
 #### Affirmation History
 
