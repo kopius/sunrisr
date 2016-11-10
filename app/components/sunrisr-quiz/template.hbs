@@ -1,11 +1,15 @@
 <h4>{{morningAffirmation.affirmation.prompt}}...</h4>
 
-<form {{action 'checkMatch' morningAffirmation on='submit'}}>
-  {{input placeholder=''
-          class='input-group form-control sunrisr-response'
-          value=form.response
-          autocomplete='off'}}
-  {{input type="submit"
-          class='btn btn-lg btn-primary top-margin btn-affirm'
-          value="Affirm"}}
+<form class='row' {{action 'checkMatch' morningAffirmation on='submit'}}>
+  <div class='col-xs-12'>
+    {{input placeholder=''
+            class='input-group form-control sunrisr-response'
+            value=form.response
+            autocomplete='off'}}
+  </div>
+  <div class='col-xs-12'>
+    {{input type="submit"
+            class='btn btn-lg btn-primary top-margin btn-affirm'
+            value="Affirm"}}
+  </div>
 </form>
