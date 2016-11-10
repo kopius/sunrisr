@@ -26,9 +26,9 @@ The front end is built with Ember. The back end ([repository here](https://githu
 
 ## Development
 
-My approach to build Sunrisr began with building out the API. I had a good idea of how I wanted to model data, and I knew Ember would be easier to use if I kept my routes flat instead of nesting resources on the back end. Once I had all the endpoints built and tested, I populated a development database with some sample data and began building out the client.
+My approach to developing Sunrisr began with building out the API. I had a good idea of how I wanted to model data, and I knew Ember would be easier to use if I kept my routes flat instead of nesting resources on the back end. Once I had all the endpoints built and tested, I populated a development database with some sample data and began building out the client.
 
-The most important feature in the client is a user's ability to perform their morning affirmations. I concentrating on building the view states and logic for the that flow first, in case the desired experience necessitated changes to my data model. The data model held up well during this stage of development, so once a user could peform their daily routine with pre-populated affirmations, it was comparatively easy to build the affirmation-management view where users customize their own list.
+The most important feature in the client is a user's ability to perform their morning affirmations. I concentrating on building the view states and logic for that first, in case the desired experience necessitated changes to my data model. The original data model held up well during this stage of development. Once a user could perform their daily routine with pre-populated affirmations, it was comparatively easy to build the affirmation-management view where users can customize their own list.
 
 Once these two primary branches were complete, I added some guidance for new users, including a button that redirects from morning affirmations to affirmation management when the user hasn't written any affirmations yet. Finally, I applied some basic styling to make the app feel like a place for inspiration and personal growth.
 
@@ -48,4 +48,4 @@ Sunrisr currently has a very simple UI, and only offers basic guidance to shephe
 
 #### Affirmation History
 
-Sunrisr's data model already offers the ability to track users' history of successfully completing their daily affirmation. I would like to leverage this information into a dashboard view where users can see a visual representation of how consistently they're affirming
+Sunrisr's data model already offers the ability to track users' history of successfully completing their morning affirmations. I would like to leverage this information into a dashboard view where users can see a visual representation of how consistently they're affirming over time.
