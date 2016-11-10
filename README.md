@@ -12,6 +12,14 @@ An inspiring message, flashed across the screen, can give you the momentary boos
 
 That's why I built Sunrisr: the only app that lets you customize a list of personal affirmations, then prompts you to *write them out every morning.*
 
+## Screenshots
+
+Here is a sample of what the deployed app looks like:
+
+![Creating custom affirmations](documentation/screenshots/sunrisr-affirmations.png)
+![Completing my morning affirmations](documentation/screenshots/sunrisr-morning.png)
+
+
 ## Technology
 
 The front end is built with Ember. The back end ([repository here](https://github.com/kopius/sunrisr-api)) is a Rails API. Both make use of [ActiveModel Serializer \& Adapter](https://github.com/rails-api/active_model_serializers) to maintain consistent formatting of request and response data. Client dependencies are managed with NPM and Bower.
