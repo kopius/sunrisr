@@ -9,7 +9,6 @@ Router.map(function () {
   this.route('sign-up');
   this.route('sign-in');
   this.route('change-password');
-  this.route('users');
   this.route('mornings');
   this.route('morning', { path: '/mornings/:morning_id' }, function() {
     this.route('morning-affirmations');
