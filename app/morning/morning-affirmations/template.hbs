@@ -1,6 +1,6 @@
 <div class='center-text'>
 {{#if model.firstObject.morning.completedAll}}
-
+  <br />
   <h1>Well Done</h1>
   <h3>You've completed your morning affirmations.</h3>
   <h3>See you again tomorrow!</h3>
@@ -24,7 +24,7 @@
   </button>
   <br />
   {{/unless}}
-
+  <br />
   {{#if model.affirmationInProgress}}
   <div>
   {{#each model as |morningAffirmation|}}
@@ -41,16 +41,13 @@
     <h3 class='italic'>Affirmations completed so far:</h3>
   {{/if}}
 
-  <ul>
   {{#each model as |morningAffirmation|}}
     {{#if morningAffirmation.completed}}
-      <li>
-        {{morningAffirmation.affirmation.prompt}}
-        {{morningAffirmation.affirmation.response}}
-      </li>
+    <h4>
+      {{morningAffirmation.affirmation.prompt}} {{morningAffirmation.affirmation.response}}
+    </h4>
     {{/if}}
   {{/each}}
-  </ul>
   {{/if}}
 
 {{/if}}
