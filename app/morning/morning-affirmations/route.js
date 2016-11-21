@@ -61,6 +61,19 @@ export default Ember.Route.extend({
     morning.set('completedAll', true);
   },
 
+  compareResponses(r1, r2) {
+    // convert inputs to uppercase
+    r1 = r1.toUpperCase();
+    r2 = r2.toUpperCase();
+
+    // check for an exact match
+    if (r1 === r2) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
   actions: {
     /* Finds the first incomplete morningAffirmation and sets it to active */
     startAffirming(model) {
@@ -82,7 +95,7 @@ export default Ember.Route.extend({
       // get the affirmation referenced by the current morningAffirmation
       let affirmation = this.getCurrentAffirmation(currentMA);
       // check to see if response matches
-      if (affirmation.get('response') === response) {
+      if (this.compareResponses(affirmation.get('response'), response)) {
         // if so, find the active MA and set its `completed` to true...
         this.markMorningAffirmationAsCompleted(currentMA);
         // ...and set its `isActive` to false
