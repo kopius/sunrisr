@@ -3,10 +3,13 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   flashMessages: Ember.inject.service(),
 
+  /* Model hook for the /morning/:morning_id/morning-affirmations route */
   model () {
+    // gain access to the model from the parent route, /morning/:morning_id
     let currentMorning = this.modelFor('morning');
     let id = currentMorning.get('id');
 
+    // return all morningAffirmation records belonging to the current morning
     return this.get('store').query('morningAffirmation', { morning_id: id });
   },
 
@@ -28,9 +31,18 @@ export default Ember.Route.extend({
       nextMA.set('isActive', true);
       return nextMA;
     } else {
-      // if no incomplete MA's, return false
+      // if no incomplete MA's exist, return false
       return false;
     }
+  },
+
+  /* Checks stored response and input response for a case-insensitive match */
+  compareResponses(r1, r2) {
+    // convert inputs to uppercase
+    r1 = r1.toUpperCase();
+    r2 = r2.toUpperCase();
+
+    return (r1 === r2);
   },
 
   /* Sets the isActive flag to false on a morningAffirmation  */
@@ -61,58 +73,56 @@ export default Ember.Route.extend({
     morning.set('completedAll', true);
   },
 
-  compareResponses(r1, r2) {
-    // convert inputs to uppercase
-    r1 = r1.toUpperCase();
-    r2 = r2.toUpperCase();
-
-    // check for an exact match
-    if (r1 === r2) {
-      return true;
-    } else {
-      return false;
-    }
-  },
-
+  /* Actions for the /morning/:morning_id/morning-affirmations route */
   actions: {
-    /* Finds the first incomplete morningAffirmation and sets it to active */
-    startAffirming(model) {
-      let nextMA = this.activateNextMorningAffirmation();
-      if (!nextMA) {
-        this.markMorningAsCompleted(this.modelFor('morning'));
-        model.set('affirmationInProgress', true);
-        return;
-      }
-
-      model.set('affirmationInProgress', true);
-
-      // tickle the current morning
-      this.getCurrentMorning(nextMA);
-    },
 
     /* Checks to see if the submitted response matches the target response */
-    checkMatch(response, currentMA) {
-      // get the affirmation referenced by the current morningAffirmation
+    checkMatch(inputResponse, currentMA) {
+      // get the parent affirmation for the current morningAffirmation
       let affirmation = this.getCurrentAffirmation(currentMA);
-      // check to see if response matches
-      if (this.compareResponses(affirmation.get('response'), response)) {
-        // if so, find the active MA and set its `completed` to true...
+      let storedResponse = affirmation.get('response');
+
+      // check to see if the stored response matches the input response
+      if (this.compareResponses(storedResponse, inputResponse)) {
+        // if so, set the current morningAffirmation's `completed' flag to true
         this.markMorningAffirmationAsCompleted(currentMA);
-        // ...and set its `isActive` to false
+        // and set its `isActive` flag to false
         this.deactivateMorningAffirmation(currentMA);
 
-        // check to see if all MA's are completed
+        // check to see if all morningAffirmations are completed
+        // if not, activate the next one
         if (!this.activateNextMorningAffirmation()) {
-          // if all MA's completed, mark morning as completed
+          // if all MA's are completed, mark the current morning as completed
           let currentMorning = this.getCurrentMorning(currentMA);
           this.markMorningAsCompleted(currentMorning);
         }
         return true;
       } else {
+        // if the input response didn't match, encourage user to try again
+        // via the injected flashMessages service
         this.get('flashMessages')
         .danger('That doesn\'t quite match your affirmation. Try again!');
       }
-    }
-  }
+    },
 
+    /* Loads & activates the necessary data to display the affirmation quiz */
+    startAffirming(model) {
+      // activate the first incomplete morningAffirmation record
+      let nextMA = this.activateNextMorningAffirmation();
+
+      // if there are no incomplete MA's, mark the morning as completed
+      if (!nextMA) {
+        this.markMorningAsCompleted(this.modelFor('morning'));
+        // flip the 'in progress' flag so that the completion message displays
+        model.set('affirmationInProgress', true);
+        return;
+      }
+
+      // toggle the view state by flipping the 'in progress' flag
+      model.set('affirmationInProgress', true);
+
+      // make sure Ember Data has pre-loaded the current morning record
+      this.getCurrentMorning(nextMA);
+    },
+  }
 });
